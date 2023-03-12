@@ -7,9 +7,10 @@ import aiohttp_jinja2
 from .routes import set_routes
 
 
-async def create_app():
+async def create_app(config: dict):
     """Создаём приложение"""
     app = web.Application()
+    app['config'] = config
     # Подключаем поддержку jinja шаблонов
     aiohttp_jinja2.setup(app, loader=jinja2.PackageLoader('demo', 'templates'))
     set_routes(app)
